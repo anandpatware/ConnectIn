@@ -1,0 +1,24 @@
+<%- include('partials/header') %> <%- include('partials/navbar') %>
+
+<div
+  class="container-fluid network-image"
+  style="padding: 5% 15% 0% 15%; margin: 0"
+>
+  <img
+    src="/images/1.PNG"
+    class="network"
+    alt=""
+    style="width: 15%; height: auto"
+  />
+  <p class="des-head" style="font-size: 2.5rem">PROFILE</p>
+</div>
+
+<div class="container-fluid ">
+    <div class="col-sm-8 profile-data justify-content-center">
+      <p class="field"><%=user.name%></p>
+      <p class="field"><%=user.username%></p>
+      <p class="field"><%=user.branch%></p>
+      <p class="field"><%=user.college%></p>
+    </div>
+  </div>
+</div>
