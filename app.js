@@ -5,7 +5,7 @@ const ejs = require("ejs");
 const mongoose = require("mongoose");
 const session = require("express-session"); // PP
 const passport = require("passport"); // PP
-const passportLocalMongoose = require("passport-local-mongoose"); // PP
+const passportLocalMongoose = require("passport-local-mongoose");
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -15,7 +15,6 @@ app.use(express.static(__dirname + "/public"));
 
 app.use(
   session({
-    // PP
     secret: "keyboard cat",
     resave: false,
     saveUninitialized: true,
@@ -117,9 +116,9 @@ app.get("/discussion", function (req, res) {
     res.redirect("/login");
   }
 });
-app.post("/discussion", function (req, res) {
-  res.redirect("/discussion/" + req.body.sortType);
-});
+// app.post("/discussion", function (req, res) {
+//   res.redirect("/discussion/" + req.body.sortType);
+// });
 app.get("/ask", function (req, res) {
   var isauth = 0;
   var currUser;
@@ -132,9 +131,11 @@ app.get("/ask", function (req, res) {
   }
 });
 
-app.get("/logout", function (req, res) {
-  req.logout();
-  res.redirect("/");
+app.get("/logout", (req, res) => {
+  req.logout(req.user, (err) => {
+    if (err) return next(err);
+    res.redirect("/");
+  });
 });
 
 app.get("/answers/:questionId", function (req, res) {
@@ -162,6 +163,7 @@ app.get("/likes/:questionId", function (req, res) {
   Question.findById(questionId, function (err, question) {
     question.likes = question.likes + 1;
     question.save();
+    //  console.log(questionId);
     res.redirect("/discussion");
   });
 });
