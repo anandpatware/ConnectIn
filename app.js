@@ -20,11 +20,13 @@ app.use(
     saveUninitialized: true,
   })
 );
+const uri =
+  "mongodb+srv://anandpatware:<password>@cluster0.kn6tbdp.mongodb.net/?retryWrites=true&w=majority";
 
 app.use(passport.initialize());
 app.use(passport.session());
 mongoose.connect(
-  "mongodb+srv://anandpatware:h4yUHqczzfBrBlmu@cluster0.kn6tbdp.mongodb.net/?retryWrites=true&w=majority",
+  "mongodb+srv://anandpatware:anand@2510@cluster0.kn6tbdp.mongodb.net/?retryWrites=true&w=majority",
   { useNewUrlParser: true }
 );
 
